@@ -1,5 +1,6 @@
 from torch import nn
 import torch.nn.functional as F
+from torch import Tensor
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
@@ -10,6 +11,12 @@ class MyAwesomeModel(nn.Module):
         self.fc2 = nn.Linear(128, 64)
         self.fc3 = nn.Linear(64, 10)
         self.dropout = nn.Dropout(p=0.5)
+        
+    def forward(self, x: Tensor):
+        if x.ndim != 4:
+            raise ValueError('Expected input to a 4D tensor')
+        if x.shape[1] != 1 or x.shape[2] != 28 or x.shape[3] != 28:
+            raise ValueError('Expected each sample to have shape [1, 28, 28]')
         
     def forward(self, x):
         # make sure input tensor is flattened
