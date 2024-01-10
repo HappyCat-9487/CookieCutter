@@ -3,6 +3,9 @@ docs/site/
 #Raw data
 data/
 
+#Proccessed data
+data/processed/processed_corruptmnist.pt
+
 # test cache
 manual_test/
 
